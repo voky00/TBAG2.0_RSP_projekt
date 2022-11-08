@@ -1,0 +1,30 @@
+Main
+Hlavní stránka obsahující menu odkazující na jednotlivé podstránky
+
+Main-casopis
+Zde se bude nacházet aktuální časopis. Jednotlivé články jsou rozděleny do bloků.
+
+Main-anketa
+Zde se bude hlasovat pro výherní článek.
+
+Main-info
+Zde se nachází informace o časopise a kontakty na členy časopisu.
+
+Main-galerie
+Zde se budou nacházet odkazy na všechny časopisy ke stažení.
+
+
+Administrace
+Zde se budou spravovat role, přidávat články do časopisu, 
+
+
+Sepsání článku
+Zde se bude sepisovat článek, který se následně odešle. Možností bude i nahrát soubor.
+
+
+Profil
+Zde se bude upravovat účet uživatele, a to od nastavení profilového obrázku a informací jako už. jméno, email a několik dalších. Dále přidání funkce pro možnost změny hesla a smazání účtu.
+
+
+Recenze
+Zde budou recenze od uživatelů kteří budou registrováni v systému.
