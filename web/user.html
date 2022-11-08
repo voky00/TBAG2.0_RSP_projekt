@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="icon.png"/>
     <title>Profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -26,9 +25,9 @@
                     <!-- Profile picture image-->
                     <img class="img-account-profile rounded-circle mb-2" src="profile.jpg" alt="">
                     <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG nebo PNG maximální velikost 5 MB</div>
+                    <div class="small font-italic text-muted mb-4" >JPG nebo PNG maximální velikost 5 MB</div>
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">Vybrat soubor</button>
+                    <button style="background-color:#0096C7" class="btn btn-primary" type="button">Vybrat soubor</button>
                 </div>
             </div>
         </div>
@@ -40,39 +39,34 @@
                     <form>
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Uživatelské jméno</label>
+                            <label style="color:black" class="small mb-1" for="inputUsername">Uživatelské jméno</label>
                             <input class="form-control" id="inputUsername" type="text">
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">Jméno</label>
+                                <label style="color:black" class="small mb-1" for="inputFirstName">Jméno</label>
                                 <input class="form-control" id="inputFirstName" type="text" >
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Příjmení</label>
+                                <label style="color:black" class="small mb-1" for="inputLastName">Příjmení</label>
                                 <input class="form-control" id="inputLastName" type="text" >
                             </div>
                         </div>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
-                            
-                            
-                            
-                            
-                            
-                            
+                                    
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Země</label>
+                                <label style="color:black" class="small mb-1" for="inputLocation">Země</label>
                                 <input class="form-control" id="inputLocation" type="text" >
                             </div>
                        
                          <!-- Form Group (location)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Okres</label>
+                                <label style="color:black" class="small mb-1" for="inputLocation">Okres</label>
                                 <input class="form-control" id="inputLocation" type="text" >
                             </div>
                        
@@ -80,24 +74,24 @@
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email</label>
+                            <label style="color:black" class="small mb-1" for="inputEmailAddress">Email</label>
                             <input class="form-control" id="inputEmailAddress" type="email" >
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Telefonní číslo</label>
+                                <label style="color:black" class="small mb-1" for="inputPhone">Telefonní číslo</label>
                                 <input class="form-control" id="inputPhone" type="tel" >
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Datum narození</label>
+                                <label style="color:black" class="small mb-1" for="inputBirthday">Datum narození</label>
                                 <input class="form-control" id="inputBirthday" type="text" name="birthday">
                            </div>
                         </div>
                         <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button">Uložit změny</button>
+                        <button style="background-color:#0096C7;" class="btn btn-primary" type="button">Uložit změny</button>
                     </form>
                 </div>
             </div>
@@ -113,11 +107,13 @@ color:#69707a;
 .img-account-profile {
     height: 10rem;
 }
+
 .rounded-circle {
     border-radius: 50% !important;
 }
 .card {
     box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    background-color: #48CAE4
 }
 .card .card-header {
     font-weight: 500;
@@ -128,8 +124,9 @@ color:#69707a;
 .card-header {
     padding: 1rem 1.35rem;
     margin-bottom: 0;
-    background-color: rgba(33, 40, 50, 0.03);
+    background-color: #0096C7;
     border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    color: black;
 }
 .form-control, .dataTable-input {
     display: block;
@@ -165,6 +162,10 @@ color:#69707a;
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+
+
+
 </style>
 
 <script type="text/javascript">

@@ -24,6 +24,9 @@ a{
     align-items: center;
 }
 .testimonial-heading p{
+    margin: 15%;
+    margin-top:  1%;
+    margin-bottom: 5%;
     font-size: 20px;
     font-weight: 500;
     background-color: #48CAE4;
