@@ -31,8 +31,8 @@ a{
     padding: 10px 20px;
 }
 .testimonial-heading span{
-    font-size: 1.3rem;
-    color: #03045E;
+    font-size: 16px;
+    color: #252525;
     margin-bottom: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -75,12 +75,12 @@ a{
 }
 .name-user strong{
     color: #3d3d3d;
-    font-size: 1.1rem;
+    font-size: 15px;
     letter-spacing: 0.5px;
 }
 .name-user span{
     color: #979797;
-    font-size: 0.8rem;
+    font-size: 12px;
 }
 .reviews{
     color: #f9d71c;
@@ -92,7 +92,7 @@ a{
     margin-bottom: 20px;
 }
 .client-comment p{
-    font-size: 0.9rem;
+    font-size: 13px;
     color: #4b4b4b;
 }
 .testimonial-box:hover{
@@ -111,7 +111,7 @@ a{
         width:100%;
     }
     .testimonial-heading h1{
-        font-size: 1.4rem;
+        font-size: 22px;
     }
 }
 @media(max-width:340px){
