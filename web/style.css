@@ -79,6 +79,12 @@ table{
 	border-radius: 50px;
 	background-color: #48CAE4;
 }
+.blok a{
+ color: #03045E;
+}
+.blok a:hover{
+	color: white;
+}
 footer {
 	position: absolute;
 	width: 100%;
