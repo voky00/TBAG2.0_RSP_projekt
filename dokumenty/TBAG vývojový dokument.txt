@@ -28,3 +28,5 @@ Zde se bude upravovat účet uživatele, a to od nastavení profilového obrázk
 
 Recenze
 Zde budou recenze od uživatelů kteří budou registrováni v systému.
+
+SQL
