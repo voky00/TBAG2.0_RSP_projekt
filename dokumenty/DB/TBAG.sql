@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2022 at 12:21 PM
+-- Generation Time: Nov 15, 2022 at 01:50 PM
 -- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 8.1.6
 
@@ -32,7 +32,8 @@ CREATE TABLE `articles` (
   `header` text NOT NULL,
   `abstract` text NOT NULL,
   `content` text NOT NULL,
-  `ispublished` tinyint(1) NOT NULL
+  `ispublished` tinyint(1) NOT NULL,
+  `voices` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,6 +47,18 @@ CREATE TABLE `authors` (
   `userid` int(11) NOT NULL,
   `articleid` int(11) NOT NULL,
   `place` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `journal`
+--
+
+CREATE TABLE `journal` (
+  `id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,6 +121,12 @@ ALTER TABLE `authors`
   ADD KEY `userid` (`userid`);
 
 --
+-- Indexes for table `journal`
+--
+ALTER TABLE `journal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages`
@@ -141,6 +160,12 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `journal`
+--
+ALTER TABLE `journal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
