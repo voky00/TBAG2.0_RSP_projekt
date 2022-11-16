@@ -1,2 +1,7 @@
 #MacOS
 .DS_Store
+
+#Secret
+web/config.ini
+
+
