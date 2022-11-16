@@ -1,0 +1,6 @@
+[db]
+hostname = localhost
+username = root
+password = myp5ss
+database = rsp
+
