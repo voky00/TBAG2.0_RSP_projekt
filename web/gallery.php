@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 
 require("backend.php");
-echo "Hello World";
 
 $db = new Db();
 
@@ -58,11 +57,23 @@ if (isset($journals)) {
 }
 
 if (isset($articles)) {
-
+    echo "<table>";
     foreach($articles as $article) {
-        echo "<div class='article'>";
-        echo "<h2>" . $article['header'] . "</h2>";
-        echo "<p>" . $article['abstract'] . "</p>";
+
+        /*
+
+        <table>
+	<tr><td class="blok" colspan="2">
+		<h1>INFO</h1>
+Jedná se o webovou verzi známého vědeckého časopisu TBAG Science
+Časopis TBAG Science je vědecký časopis, který za krátkou dobu jeho existování nasbíral
+několik ocenění na vědeckém poli, byl založen v roce 2012. Náš časopis se snaží vytvořit
+skvělé příležitosti pro nové spisovatele a autory. V našem časopise se dozvíte o aktuálním dění ve světě vědy,
+o zajímavých teoriích a objevech.
+</td></tr>
+
+         */
+        echo "<tr><td class='blok' colspan='2'><h1>" . $article['header'] . "</h1>" . $article['abstract'];
         $authors = $db->getAuthors($article['id']);
         echo "<p>";
         foreach($authors as $author) {
@@ -73,8 +84,9 @@ if (isset($articles)) {
         }
         echo "</p>";
         makeActions($article['id']);
-        echo "</div>";
+        echo "</td></tr>";
     }
+    echo "</table>";
 }
 
 function makeActions($id) {
