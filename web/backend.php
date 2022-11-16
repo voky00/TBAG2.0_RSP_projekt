@@ -103,4 +103,19 @@ class Db {
         return $query;
     }
 
+    public function getAuthors($articleid) {
+
+        /* query sample
+        SELECT users.id as id, users.firstname as firstname, users.lastname as lastname FROM users
+        JOIN authors ON authors.userid = users.id
+        JOIN articles
+        ON authors.articleid = articles.id
+        WHERE articles.id = 1 ORDER BY authors.place ASC;
+        */
+        $query = "SELECT users.id as id, users.firstname as firstname, users.lastname as lastname FROM users JOIN authors ON authors.userid = users.id JOIN articles ON authors.articleid = articles.id WHERE articles.id = $articleid ORDER BY authors.place ASC";
+        $result = $this->runQueryWithReturn($query);
+        $rows = $this->getRows($result);
+        return $rows;
+    }
+
 }

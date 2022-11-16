@@ -10,13 +10,28 @@ echo "Hello World";
 
 $db = new Db();
 
+if (isset($_GET['author'])) {
+    /* sample query
+    * SELECT * FROM `authors` AS auth
+    * JOIN articles AS art
+    * ON art.id = auth.articleid
+    * WHERE auth.userid = 3;
+    */
+    $author = $_GET['author'];
+    $query = "SELECT * FROM authors AS auth JOIN articles AS art ON art.id = auth.articleid WHERE auth.userid = $author";
+    $result = $db->runQueryWithReturn($query);
+    $articles = $db->getRows($result);
+    $page_title = "Články autora";
+    unset($journals);
+}
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = "SELECT * FROM articles WHERE journalid = $id";
     $result = $db->runQueryWithReturn($query);
     $articles = $db->getRows($result);
     $page_title = "Články";
-} else {
+} elseif (!isset($articles)) {
     $query = "SELECT * FROM journal ORDER BY id ASC";
     $result = $db->runQueryWithReturn($query);
     $journals = $db->getRows($result);
@@ -42,8 +57,36 @@ if (isset($journals)) {
     echo "</table>";
 }
 
+if (isset($articles)) {
 
+    foreach($articles as $article) {
+        echo "<div class='article'>";
+        echo "<h2>" . $article['header'] . "</h2>";
+        echo "<p>" . $article['abstract'] . "</p>";
+        $authors = $db->getAuthors($article['id']);
+        echo "<p>";
+        foreach($authors as $author) {
+            echo '<a href="gallery.php?author=' . $author['id'] . '">' . $author['firstname'] . ' ' . $author['lastname'] . '</a>';
+            if ($author != end($authors)) {
+                echo ", ";
+            }
+        }
+        echo "</p>";
+        makeActions($article['id']);
+        echo "</div>";
+    }
+}
 
+function makeActions($id) {
+    echo "<div class='actions'>";
+    echo "<a href='article.php?id=" . $id . "'>Číst</a>";
+    echo " | ";
+    echo "<a href='article.php?id=" . $id  . "&action=pdf'>Stáhnout PDF</a>";
+    echo " | ";
+    echo "<a href='article.php?id=" . $id . "&action=vote'>Hlasovat pro článek</a>";
+    echo "</div>";
+
+}
 
 //display footer
 require("templates/footer.php");
