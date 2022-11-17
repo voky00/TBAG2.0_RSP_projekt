@@ -21,7 +21,7 @@ iframe{
 	width: 15%;
 	background-color: lightgray;
 }
-.odhlasit{
+.top{
 	z-index: -1;
 	position: absolute;
 	top: 0;
