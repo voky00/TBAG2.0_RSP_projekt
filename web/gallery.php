@@ -14,10 +14,10 @@ if (isset($_GET['author'])) {
     * SELECT * FROM `authors` AS auth
     * JOIN articles AS art
     * ON art.id = auth.articleid
-    * WHERE auth.userid = 3;
+    * WHERE auth.userid = 3 AND art.status = 'approved'
     */
     $author = $_GET['author'];
-    $query = "SELECT * FROM authors AS auth JOIN articles AS art ON art.id = auth.articleid WHERE auth.userid = $author";
+    $query = "SELECT * FROM authors AS auth JOIN articles AS art ON art.id = auth.articleid WHERE auth.userid = $author AND art.status = 'approved'";
     $result = $db->runQueryWithReturn($query);
     $articles = $db->getRows($result);
     $page_title = "Články autora";
@@ -26,7 +26,7 @@ if (isset($_GET['author'])) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM articles WHERE journalid = $id";
+    $query = "SELECT * FROM articles WHERE journalid = $id AND status = 'approved'";
     $result = $db->runQueryWithReturn($query);
     $articles = $db->getRows($result);
     $page_title = "Články";
@@ -97,7 +97,6 @@ function makeActions($id) {
     echo " | ";
     echo "<a href='article.php?id=" . $id . "&action=vote'>Hlasovat pro článek</a>";
     echo "</div>";
-
 }
 
 //display footer

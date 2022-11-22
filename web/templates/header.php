@@ -17,7 +17,7 @@
         <li><a href="main-casopis.html">Časopis</a></li>
         <li><a href="main-anketa.html">Anketa</a></li>
         <li><a href="main-info.html">Informace</a></li>
-        <li class="selected"><a href="main-galerie.html">Galerie</a></li>
+        <li class="selected"><a href="gallery.php">Galerie</a></li>
         <a href="user.html"><img src="testprofile.png" class="profil"></div></a>
     </ul>
 </nav>
