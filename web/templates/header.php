@@ -1,3 +1,23 @@
+<?php
+
+//check session user
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user'];
+// check user role
+    $query = "SELECT role FROM users WHERE email = '$username'";
+    /** @var $db */
+    $result = $db->runQueryWithReturn($query);
+    $rows = $db->getRows($result);
+    $role = $rows[0]['role'];
+}
+else {
+    $role = "guest";
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -11,15 +31,4 @@
 
 <body>
 
-<nav>
-    <ul>
-        <img src="logo.png" class="logo">
-        <li><a href="main-casopis.html">Časopis</a></li>
-        <li><a href="main-anketa.html">Anketa</a></li>
-        <li><a href="main-info.html">Informace</a></li>
-        <li class="selected"><a href="gallery.php">Galerie</a></li>
-        <a href="user.html"><img src="testprofile.png" class="profil"></div></a>
-    </ul>
-</nav>
 
-<div class="body">

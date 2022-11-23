@@ -1,7 +1,6 @@
 <?php
 
-// start session
-session_start();
+$db = new Db();
 
 class Db {
     // read ini file

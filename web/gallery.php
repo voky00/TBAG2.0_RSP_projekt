@@ -3,11 +3,9 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+session_start();
 
 require("backend.php");
-
-$db = new Db();
 
 if (isset($_GET['author'])) {
     /* sample query
@@ -39,6 +37,7 @@ if (isset($_GET['id'])) {
 
 //display header
 require("templates/header.php");
+require("navigation.php");
 //print_r($journals);
 if (isset($journals)) {
     echo "<table>";
@@ -89,13 +88,15 @@ o zajímavých teoriích a objevech.
     echo "</table>";
 }
 
-function makeActions($id) {
+function makeActions($id, $authorid = null) {
     echo "<div class='actions'>";
     echo "<a href='article.php?id=" . $id . "'>Číst</a>";
     echo " | ";
     echo "<a href='article.php?id=" . $id  . "&action=pdf'>Stáhnout PDF</a>";
     echo " | ";
     echo "<a href='article.php?id=" . $id . "&action=vote'>Hlasovat pro článek</a>";
+    // todo: add editing of own articles for authors
+    // todo: add editing of articles for editors, adiministrators
     echo "</div>";
 }
 
