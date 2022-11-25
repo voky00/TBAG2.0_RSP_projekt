@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register form</title>
+   <title>Registrace</title>
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
@@ -59,8 +59,8 @@ if(isset($_POST['submit'])){
    
 <div class="form-container">
 
-   <form action="" method="post">
-      <h3>register now</h3>
+   <form action="" method="post" style="background-color:#11A2F4">
+      <h3 style="background-color:#11A2F4">Zaregistrujte se!</h3>
       <?php
       if(isset($error)){
          foreach($error as $error){
@@ -68,13 +68,13 @@ if(isset($_POST['submit'])){
          };
       };
       ?>
-      <input type="text" name="firstname" required placeholder="enter your name">
-      <input type="text" name="lastname" required placeholder="enter your surname">
-      <input type="email" name="email" required placeholder="enter your email">
-      <input type="password" name="password" required placeholder="enter your password">
-      <input type="password" name="cpassword" required placeholder="confirm your password">
-      <input type="submit" name="submit" value="register now" class="form-btn">
-      <p>already have an account? <a href="login_form.php">login now</a></p>
+      <input type="text" name="firstname" required placeholder="Zadejte jméno">
+      <input type="text" name="lastname" required placeholder="Zadejte příjmení">
+      <input type="email" name="email" required placeholder="Zadejte email">
+      <input type="password" name="password" required placeholder="Zadejte heslo">
+      <input type="password" name="cpassword" required placeholder="Zadejte heslo znovu">
+      <input type="submit" name="submit" value="Zaregistrovat se!" class="form-btn" style="background-color:#11F4DF">
+      <p style="background-color:#11A2F4">Již máte účet? <a href="login_form.php" style="background-color:#11A2F4">Přihlásit se</a></p>
    </form>
 
 </div>
