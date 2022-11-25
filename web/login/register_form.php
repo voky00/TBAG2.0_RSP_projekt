@@ -1,22 +1,21 @@
 <?php
 
-
+require("../backend.php");
+$db = new Db();
 
 if(isset($_POST['submit'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $name = $_POST['firstname'];
+   $lname = $_POST['lastname'];
+   $email =  $_POST['email'];
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
-   $user_type = $_POST['user_type'];
+   $type = 'user';
+   
 
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
- 
-    
-
-   if(mysqli_num_rows($result) > 0){
+   $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
+   $result = $db->runQueryWithReturn($select);
+   if($db->countRows($result) > 0){
 
       $error[] = 'user already exist!';
 
@@ -25,11 +24,14 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $error[] = 'password not matched!';
       }else{
-        $query = "INSERT INTO users (firstname, lastname, email, role, password) VALUES ('" . $user['firstname'] . "','" . $user['lastname'] . "', '" .
-      $user['email'] . "', '" .
-      $user['role'] . "', '" .
-      $user['password'] . "')";
-
+       // $query = "INSERT INTO users (firstname, lastname, email, role, password) VALUES ('" . $name . "','" . $lname . "', '" . $email . '", "' . $type . "',  '" .$pass . "')";
+         $query = "INSERT INTO users (firstname, lastname, email, role, password) VALUES ('" . $name . "','" . $lname . "', '" .
+      $email . "', '" .
+      $type . "', '" .
+      $pass . "')";
+     
+      
+      
 
     $db->runQuery($query);
          header('location:login_form.php');
@@ -66,14 +68,11 @@ if(isset($_POST['submit'])){
          };
       };
       ?>
-      <input type="text" name="name" required placeholder="enter your name">
+      <input type="text" name="firstname" required placeholder="enter your name">
+      <input type="text" name="lastname" required placeholder="enter your surname">
       <input type="email" name="email" required placeholder="enter your email">
       <input type="password" name="password" required placeholder="enter your password">
       <input type="password" name="cpassword" required placeholder="confirm your password">
-      <select name="user_type">
-         <option value="user">user</option>
-         <option value="admin">admin</option>
-      </select>
       <input type="submit" name="submit" value="register now" class="form-btn">
       <p>already have an account? <a href="login_form.php">login now</a></p>
    </form>
