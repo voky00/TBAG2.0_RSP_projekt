@@ -1,38 +1,34 @@
 <?php
 
 
-require("../backend.php");
-$db = new Db();
+
 
 
 if(isset($_POST['submit'])){
-   
-   //$name = mysqli_real_escape_string($db->getConn, $_POST['']);
-   $email = mysqli_real_escape_string($db->getConn(), $_POST['email']);
+
+   $name = mysqli_real_escape_string($conn, $_POST['']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = md5($_POST['password']);
-   //$cpass = md5($_POST['cpassword']);
-   //$role = $_POST['role'];
+   $cpass = md5($_POST['cpassword']);
+   $user_type = $_POST['user_type'];
 
    $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
 
-   $result = mysqli_query($db->getConn(), $select);
+   $result = mysqli_query($conn, $select);
 
    if(mysqli_num_rows($result) > 0){
 
       $row = mysqli_fetch_array($result);
-$dotaz = " SELECT role FROM users WHERE email = '$email' && password = '$pass' ";
-//var_dump($dotaz);
-$res = $db->runQueryWithReturn($dotaz);
-$res = $res->fetch_assoc();
-      if($res['role'] == 'admin'){
 
-         $_SESSION['email'] = $row['email'];
-         header('location:../sprava/sprava.html');
+      if($row['user_type'] == 'admin'){
 
-      }elseif($res['role']){
+         $_SESSION['admin_name'] = $row['name'];
+         header('location:admin_page.php');
 
-         $_SESSION['email'] = $row['email'];
-         header('location:../1_uživatel/main-casopis.html');
+      }elseif($row['user_type'] == 'user'){
+
+         $_SESSION['user_name'] = $row['name'];
+         header('location:user_page.php');
 
       }
      
