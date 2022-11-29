@@ -153,7 +153,7 @@ textarea{
 <nav>
     <ul>
         <img src="../src/logo.png" class="logo">
-        <li class="selected"><a href="main-casopis.html">Časopis</a></li>
+        <li class="selected"><a href="main-casopis.php">Časopis</a></li>
         <li><a href="main-info.html">Informace</a></li>
         <li><a href="main-galerie.html">Galerie</a></li>
         <li><a href="main-recenze.html">Recenze</a></li>

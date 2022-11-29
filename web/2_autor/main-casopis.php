@@ -125,6 +125,7 @@ $mysqli->close();
         <li class="selected"><a href="main-casopis.php">Časopis</a></li>
         <li><a href="main-info.html">Informace</a></li>
         <li><a href="main-galerie.html">Galerie</a></li>
+        <li><a href="NapsatClanek.php">Přidat článek</a></li>
         <a href="user.html"><img src="../src/testprofile.png" class="profil"></div></a>
     </ul>
 </nav>
