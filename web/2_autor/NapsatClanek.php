@@ -27,7 +27,6 @@ if(isset($_POST['submit']))
 <title>Odeslat článek</title>
 <style>
 body{
-	font-family: sans-serif;
     text-align: center;
     background-color: #90E0EF;
 }
@@ -92,11 +91,75 @@ div {
 #hranka2{
 	border-radius: 80px;
 }
+nav {
+    top: 0;
+    position: fixed;
+    float: left;
+    width: 100%;
+    background-color: #0077B6;
+    margin-left: -8px;
+}
+nav .logo {
+    position: absolute;
+    width: 130px;
+    height: 65px;
+    left: 2%;
+    padding: 5px;
+}
+nav .profil {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    right: 2%;
+    padding: 12px;
+}
+nav ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 25%;
+    width: 60%;
+    list-style-type: none;
+    margin-left: -0px;
+}
+nav ul li {
+    display: inline-block;
+    padding: 20px;
+    font-size: 30px;
+}
+nav ul li:hover {
+    background-color: #00B4D8;
+}
+nav ul li a {
+    color: #03045E;
+}
+nav ul li:hover a {
+    color: white;
+}
+.selected {
+    background-color: #0096C7;
+}
+h1{
+    font-family: sans-serif;
+}
+textarea{
+    font-family: sans-serif;
+}
+
 </style>
  
 </head>
 <body>
-	
+<nav>
+    <ul>
+        <img src="../src/logo.png" class="logo">
+        <li class="selected"><a href="main-casopis.html">Časopis</a></li>
+        <li><a href="main-info.html">Informace</a></li>
+        <li><a href="main-galerie.html">Galerie</a></li>
+        <li><a href="main-recenze.html">Recenze</a></li>
+        <a href="user.html"><img src="../src/testprofile.png" class="profil"></div></a>
+    </ul>
+</nav>
 	<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 		
 		<div>
