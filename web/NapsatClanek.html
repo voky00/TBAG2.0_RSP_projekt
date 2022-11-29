@@ -59,6 +59,13 @@
             width: 1100px;
             height: 500px
         }
+        #hranka_abstract {
+            border-radius: 25px;
+            border: 4px solid #0077B6;
+            padding: 20px;
+            width: 1100px;
+            height: 200px
+        }
         #hranka1{
             border-radius: 35px;
         }
@@ -71,7 +78,18 @@
 <div>
 <h1>Sepsání článku pro časopis T-BAG Science</h1>
 
-<form action="ZatimNicAlePakSeDoplni" method="post">
+<!-- article form -->
+
+<form action="article.php" method="POST">
+    <!-- header -->
+    <input type="text" name="header" placeholder="Název článku" size="100" required><br>
+    <textarea name="abstract" id="hranka_abstract" placeholder="Abstract" rows="10" cols="90"></textarea>
+    <textarea name="content" id="hranka" rows="22" placeholder="Text članku" cols="90"></textarea>
+    <INPUT TYPE='submit' class="odeslat" value='Odeslat článek' id="hranka2" name='odeslat' onClick='return confirmSubmit()' style="margin-left: 110px">
+</form>
+
+
+<!-- <form action="ZatimNicAlePakSeDoplni" method="post">
     <textarea name="textarea" id="hranka" rows="22" cols="90"></textarea>
     <br><br>
 
@@ -83,7 +101,7 @@
     <input type="submit" value="Odeslat soubor" id="hranka1" class="nahrat" onClick='return confirmSubmit()' style="margin-left: -50px"/>
     <INPUT TYPE='submit' class="odeslat" value='Odeslat článek' id="hranka2" name='odeslat' onClick='return confirmSubmit()' style="margin-left: 110px">
 </form>
-</form>
+</form> -->
 </div>
 <br>
 </body>
