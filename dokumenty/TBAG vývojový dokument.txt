@@ -30,3 +30,9 @@ Recenze
 Zde budou recenze od uživatelů kteří budou registrováni v systému.
 
 SQL
+
+Registrace 
+Umožnuje se zaregistrovat na we jako uživatel, jiná práva musí být přidělena.
+
+Přihlášení
+Možnost se přihlásit ke svému účtu ukládat si články, komentovat.
