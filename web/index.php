@@ -1,7 +1,8 @@
 <?php
 
-require("backend.php");
+//require("backend.php");
 
-$db = new Db();
+//$db = new Db();
 //include('conn.php');
-include('login/login_form.php');
+header('location:./login/index.php');
+

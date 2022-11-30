@@ -44,7 +44,7 @@ function redirect($role){
             header('location:../main-casopis.html');
             break;
         case 'admin':
-            header('location:../sprava/sprava.html');
+            header('location:../sprava/sprava.php');
             break;
         case 'editor':
             header('location:../main-clanky.php');
