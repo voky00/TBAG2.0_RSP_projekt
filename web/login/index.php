@@ -41,7 +41,7 @@ function redirect($role){
     //switch case
     switch($role){
         case 'reader':
-            header('location:../1_uživatel/main-casopis.html');
+            header('location:../main-casopis.html');
             break;
         case 'admin':
             header('location:../sprava/sprava.html');
