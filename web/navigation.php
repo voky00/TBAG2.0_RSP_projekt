@@ -48,6 +48,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     echo "<li><a href='$value'>$key</a></li>";
                 }
             }
+
         } elseif ($role == 'editor') {
             foreach ($config['navigation_editor'] as $key => $value) {
                 if ($currentPage == $value) {
@@ -58,6 +59,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             }
         } elseif ($role == 'admin') {
             foreach ($config['navigation_admin'] as $key => $value) {
+                if ($currentPage == $value) {
+                    echo "<li class='selected'><a href='$value'>$key</a></li>";
+                } else {
+                    echo "<li><a href='$value'>$key</a></li>";
+                }
+            }
+        } elseif ($role == 'reviewer') {
+            foreach ($config['navigation_reviewer'] as $key => $value) {
                 if ($currentPage == $value) {
                     echo "<li class='selected'><a href='$value'>$key</a></li>";
                 } else {

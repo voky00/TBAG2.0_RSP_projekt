@@ -18,23 +18,19 @@ if (!isset($_GET['status'])) {
 } else {
     $status = $_GET['status'];
 }
+//get reviewer id
+$query = "SELECT * FROM users WHERE email = '" . $_SESSION['user'] . "'";
+$result = $db->runQueryWithReturn($query);
+$rows = $db->getRows($result);
+$reviewer = $rows[0]['id'];
+
+
 $title = "Nové články";
-switch ($status) {
-    case "approved":
-        $title = "Přijaté články";
-        break;
-    case "declined":
-        $title = "Zamítnuté články";
-        break;
-    case "review":
-        $title = "Články k recenzi";
-        break;
-    case "all":
-        $title = "Všechny články";
-        break;
-    default:
-        break;
+if ($status == "reviewed") {
+    $title = "Posouzené články";
 }
+
+
 // db statuses: new, reviewed, approved, declined, review
 ?>
 
@@ -42,13 +38,8 @@ switch ($status) {
 <!-- html navigation: new articles, reviewing, published, rejected, all articles -->
 <table>
     <tr>
-        <td><a href="?status=new">Nové články</a></td>
-        <td><a href="?status=review">Recenze</a></td>
-        <td><a href="?status=approved">Publikované</a></td>
-        <!-- zamítnuté -->
-        <td><a href="?status=declined">Zamítnuté</a></td>
-        <!-- všechny -->
-        <td><a href="?status=all">Všechny</a></td>
+        <td><a href="?status=new">Nové články k posouzeni</a></td>
+        <td><a href="?status=reviewed">Posouzené članky</a></td>
     </tr>
 </table>
 <table class="blok" style="width: 80%;">
@@ -56,67 +47,58 @@ switch ($status) {
     <?php
     //get articles
     echo "<tr><td colspan='3'><h2>$title</h2></td></tr>";
-    if ($status != "all") {
-        $query = "SELECT * FROM articles WHERE status = '$status'";
+    if ($status != "reviewed") {
+        // get articles by reviewer id
+        /* sample query
+        SELECT * FROM `articles` as art
+        JOIN reviews as r ON art.id = r.articleid
+        WHERE r.reviewerid = 27 AND r.status = 'review'
+        */
+        $query = "SELECT * FROM articles as art
+        JOIN reviews as r ON art.id = r.articleid
+        WHERE r.reviewerid = $reviewer AND art.status = 'review'";
     } else {
-        $query = "SELECT * FROM articles";
-    }
+        $query = "SELECT * FROM articles as art
+        JOIN reviews as r ON art.id = r.articleid
+        WHERE r.reviewerid = $reviewer";
 
+    }
+    //echo $status;
+    //echo $query;
     $result = $db->runQueryWithReturn($query);
     $rows = $db->getRows($result);
     if (count($rows) == 0) {
         echo "<tr><td colspan='3'>Žádné články</td></tr>";
     }
     //print articles list:
+    //echo $status;
     foreach ($rows as $row) {
         $id = $row['id'];
         $title = $row['header'];
-        $status = $row['status'];
+        //$status = $row['status'];
         $journal = $row['journalid'];
         $query = "SELECT * FROM journal WHERE id = $journal";
         $result = $db->runQueryWithReturn($query);
         $journal = $db->getRows($result);
         $journal = $journal[0];
         $journal = $journal['number'] . "/" . $journal['year'];
+        // get article id
+        $articleid = $row['articleid'];
 
         // make actions: review, approve, decline, edit, delete
         $actions = "";
+        $actions .= "<a href='review-form.php?id=$articleid'>Posudek</a><br>";
+        //print_r($row);
+        //echo "<br>" . $status . "<br>";
+
         if ($status == "new") {
-            $actions .= "<a href='reviewer.php?id=$id'>Recenzent</a><br>";
+            echo "<tr><td>$title</td><td>$journal</td><td>$actions</td></tr>";
         }
-        if ($status == "reviewed") {
-            //posudek
-            $actions .= "<a href='review.php?id=$id'>Posudek</a><br>";
-            //$actions .= "<a href='reviewer.php?id=$id'>Recenzent</a><br>";
-            $actions .= "<a href='approve.php?id=$id'>Schválit</a><br>";
-            $actions .= "<a href='decline.php?id=$id'>Zamítnout</a><br>";
+        if ($status == "reviewed" && $row['content'] != "") {
+            echo "<tr><td>$title</td><td>$journal</td><td>$actions</td></tr>";
         }
-        if ($status == "review") {
-            //posudek
-            // check if review is not null
-            $query = "SELECT * FROM reviews WHERE articleid = $id";
-            $result = $db->runQueryWithReturn($query);
-            $reviews = $db->getRows($result);
-            //check content of review is not null
-            $review = $reviews[0];
-            $review = $review['content'];
-            if ($review != null) {
-                $actions .= "<a href='review.php?id=$id'>Posudek</a><br>";
-                $actions .= "<a href='approve.php?id=$id'>Schválit</a><br>";
-                $actions .= "<a href='decline.php?id=$id'>Zamítnout</a><br>";
-            }
-        }
-        if ($status == "approved") {
-            $actions .= "<a href='decline.php?id=$id'>Zamítnout</a><br>";
-        }
-        if ($status == "declined") {
-            // review
-            $actions .= "<a href='review.php?id=$id'>Posudek</a><br>";
-            $actions .= "<a href='approve.php?id=$id'>Schválit</a><br>";
-        }
-        $actions .= "<a href='article.php?id=$id&action=edit'>Upravit</a><br>";
-        $actions .= "<a href='delete.php?id=$id'>Smazat</a>";
-        echo "<tr><td>$title</td><td>$journal</td><td>$actions</td></tr>";
+
+        //echo "<tr><td>$title</td><td>$journal</td><td>$actions</td></tr>";
 
         //echo "<tr><td><a href='article.php?id=$id'>$title</a></td><td><a href='article.php?action=edit&id=$id'>Upravit</a><br><a href='#'>Recenzent</a><br>Schválit<br>Odmítnout</td><td>$journal</td></tr>";
     }

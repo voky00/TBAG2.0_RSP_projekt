@@ -1,6 +1,13 @@
 <?php
 
 
+$debug = true;
+if ($debug) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
+
 
 $db = new Db();
 
@@ -117,6 +124,28 @@ class Db {
         $result = $this->runQueryWithReturn($query);
         $rows = $this->getRows($result);
         return $rows;
+    }
+
+    public function getRole($email) {
+        if (isset($_SESSION['user'])) {
+            $query = "SELECT role FROM users WHERE email = '$email'";
+            $result = $this->runQueryWithReturn($query);
+            $rows = $this->getRows($result);
+            return $rows[0]['role'];
+        } else {
+            return "guest";
+        }
+    }
+
+    public function getUserId($email) {
+        if (isset($_SESSION['user'])) {
+            $query = "SELECT id FROM users WHERE email = '$email'";
+            $result = $this->runQueryWithReturn($query);
+            $rows = $this->getRows($result);
+            return $rows[0]['id'];
+        } else {
+            return "-1";
+        }
     }
 
 

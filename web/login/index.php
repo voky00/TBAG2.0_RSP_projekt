@@ -1,7 +1,10 @@
 <?php
 
 
-
+//check session
+if (!isset($_SESSION)) {
+    session_start();
+}
 require("../backend.php");
 $db = new Db();
 
@@ -9,15 +12,12 @@ $db = new Db();
 if(isset($_POST['submit'])){
    
    //$name = mysqli_real_escape_string($db->getConn, $_POST['']);
-   $email = mysqli_real_escape_string($db->getConn(), $_POST['email']);
+   $email = mysqli_real_escape_string($db->getConn(), $_POST['email']); // Good practice to use mysqli_real_escape_string!
    $pass = $_POST['password'];
-   //$cpass = md5($_POST['cpassword']);
-   //$role = $_POST['role'];
 
     $query = "SELECT * FROM users WHERE email = '$email'";
     $result = $db->runQueryWithReturn($query);
     $rows = $db->getRows($result);
-
 
     if (count($rows) == 1) {
         $hash = $rows[0]['password'];
@@ -25,6 +25,8 @@ if(isset($_POST['submit'])){
             $_SESSION['user'] = $email;
                         //redirect by role
             $_SESSION['role'] = $rows[0]['role'];
+            //session user id
+            $_SESSION['id'] = $rows[0]['id'];
             redirect($_SESSION['role']);
         } else {
             $error[] = 'incorrect email or password!';
@@ -46,6 +48,12 @@ function redirect($role){
             break;
         case 'editor':
             header('location:../main-clanky.php');
+            break;
+        case 'author':
+            header('location:../gallery.php?author=' . $_SESSION['id']);
+            break;
+        case 'reviewer':
+            header('location: ../main-review.php');
             break;
         default:
             //debug
@@ -73,7 +81,7 @@ function redirect($role){
    
 <div class="form-container">
 
-   <form action="" method="post" style="background-color:#11A2F4">
+   <form action="index.php" method="post" style="background-color:#11A2F4">
       <h3 style="background-color:#11A2F4">Přihlásit se</h3>
       <?php
       if(isset($error)){
