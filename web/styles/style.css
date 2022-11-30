@@ -1,0 +1,106 @@
+body, html{
+	margin:0;
+	padding:0;
+}
+
+body{
+ font-size: 20px;
+}
+a {
+	text-decoration: none;
+}
+nav {
+	top: 0;
+	position: fixed;
+	float: left;
+	width: 100%;
+	background-color: #0077B6;
+}
+	nav .logo {
+		position: absolute;
+		width: 130px;
+		height: 65px;
+		left: 2%;
+		padding: 5px;
+	}
+	nav .profil {
+		position: absolute;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		right: 2%;
+		padding: 12px;
+	}
+	nav ul {
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 25%;
+		width: 60%;
+		list-style-type: none;
+	}
+		nav ul li {
+			display: inline-block;
+			padding: 20px;
+			font-size: 30px;
+		}
+			nav ul li:hover {
+				background-color: #00B4D8;
+			}
+			nav ul li a {
+				color: #03045E;
+			}
+			nav ul li:hover a {
+				color: white;
+			}
+			.selected {
+				background-color: #0096C7;
+			}
+
+.body {
+	color: #03045E;
+	z-index: -1;
+	width: 60%;
+	margin-left: 20%;
+	background-color: #90E0EF;
+	padding-top: 10%;
+	padding-bottom: 20%;
+}
+table{
+	margin-left:auto;
+	margin-right:auto;
+	align-content:center;
+	border-spacing:50px;
+}
+.blok td {
+	vertical-align: top;
+}
+.blok {
+	padding:30px;
+	border-radius: 20px;
+	background-color: #48CAE4;
+}
+.blok a{
+ color: #03045E;
+}
+.blok a:hover{
+	color: white;
+}
+
+footer {
+	position: absolute;
+	width: 100%;
+	height: 10%;
+	background-color: #0077B6;
+}
+	footer .text {
+		color: #03045E;
+		font-size: 20px;
+		margin-left: 10%;
+		margin-top: 2%;
+	}
+		footer .text a {
+			color: #03045E;
+		}
+		footer .text a:hover {
+			color: white;
+		}

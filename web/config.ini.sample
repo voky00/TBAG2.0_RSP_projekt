@@ -1,0 +1,14 @@
+[db]
+hostname = localhost
+username = root
+password = myp5ss
+database = rsp
+
+
+[navigation_main]
+Časopis = "main-casopis.html"
+Informace = "main-info.html"
+Galérie = "gallery.php"
+
+[navigation_author]
+Přidat članek = "NapsatClanek.html"
