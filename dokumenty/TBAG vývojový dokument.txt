@@ -31,6 +31,8 @@ Zde budou recenze od uživatelů kteří budou registrováni v systému.
 
 Správa rolí
 Nyní jde upravovat, přidělovat nebo odebírat role jako například autor,redaktor a šéfredaktor.
+Dále se dá odebírat uživatele
+Vypisování galerie a informací
 
 SQL
 
