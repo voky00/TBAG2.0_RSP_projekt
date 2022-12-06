@@ -9,26 +9,123 @@ require("../backend.php");
       $db->runQuery($dotaz);
        header('location:sprava.php?account=true');
   }
-
+   if(isset($_GET['updateuser'])){
+      $user = $_GET['updateuser'];
+     $firstname = $_POST['firstname'];
+     $lastname =$_POST['lastname'];
+     $email =$_POST['email'];
+     $role = $_POST['role'];
+      $dotaz = " UPDATE users SET firstname='$firstname', lastname='$lastname', email='$email',role='$role' WHERE id = '$user' ";
+      $db->runQuery($dotaz);
+       header('location:sprava.php?account=true');
+}
 function Galeri(){
-  // $db = new Db();
-  // $dotaz = " SELECT * FROM articles GROUP BY  ";
-  // $res = $db->runQueryWithReturn($dotaz);
-  // $res = $res->fetch_assoc();
+   $db = new Db();
+   echo "<TABLE>";
+
+echo "<tr style='background-color: lightgrey;'>
+<td>id</td>
+<td>header</td>
+<td>abstract</td>
+<td>content</td>
+<td>votes</td>
+<td>journalid</td>
+<td>status</td>
+</tr>";
+ $j=0;
+for($i=1; $i < 999; $i++){
+   $dotaz = " SELECT * FROM articles WHERE id = '$i' ";
+   $res = $db->runQueryWithReturn($dotaz);
+   $res = $res->fetch_assoc();
+
+   if($res!=NULL){
+       $j++;
+   if($j%2==0)
+   echo "<tr style='background-color: lightgrey;'>
+    <td>".$res['id']."</td>
+   <td>".$res['header']."</td>
+   <td>".$res['abstract']."</td>
+   <td>".$res['content']."</td>
+   <td>".$res['votes']."</td>
+   <td>".$res['journalid']."</td>
+   <td>".$res['status']."</td>
+   </tr>";
+   else
+   echo "<tr>
+    <td>".$res['id']."</td>
+   <td>".$res['header']."</td>
+   <td>".$res['abstract']."</td>
+   <td>".$res['content']."</td>
+   <td>".$res['votes']."</td>
+   <td>".$res['journalid']."</td>
+   <td>".$res['status']."</td>
+   </tr>";
+   }
+}
+   echo "</TABLE>";
 }
 function Info(){
    $db = new Db();
-   $dotaz = " SELECT * FROM pages WHERE id = '1' ";
+   echo "<TABLE>";
+
+echo "<tr style='background-color: lightgrey;'>
+<td>id</td>
+<td>title</td>
+<td>content</td>
+<td>shown</td>
+</tr>";
+ $j=0;
+for($i=1; $i < 999; $i++){
+   $dotaz = " SELECT * FROM pages WHERE id = '$i' ";
    $res = $db->runQueryWithReturn($dotaz);
    $res = $res->fetch_assoc();
-   echo $res['content'];
+
+   if($res!=NULL){
+       $j++;
+   if($j%2==0)
+   echo "<tr style='background-color: lightgrey;'>
+   <td>".$res['id']."</td>
+   <td>".$res['title']."</td>
+   <td>".$res['content']."</td>
+   <td>".$res['shown']."</td>
+   </tr>";
+   else
+   echo "<tr>
+   <td>".$res['id']."</td>
+   <td>".$res['title']."</td>
+   <td>".$res['content']."</td>
+   <td>".$res['shown']."</td>
+   </tr>";
+   }
+}
+   echo "</TABLE>";
+}
+function AccountUpdate(){
+$user = $_GET['accountUpdate'];
+
+
+echo "<form action='sprava.php?updateuser=".$user."' method='post'>
+ID: ".$user."<br>
+Jméno: <input type='text' name='firstname'><br>
+Příjmení: <input type='text' name='lastname'><br>
+Email: <input type='text' name='email'><br>
+Role:  
+<select name = 'role'>  
+  <option value='reader'>reader</option> 
+  <option value='author'>author</option>  
+  <option value='editor'>editor</option>  
+  <option value='reviewer'>reviewer</option>  
+  <option value='admin'>admin</option>    
+</select>  <br><br>
+<input type='submit' value='Upravit'>
+</form>";
+
+if (isset($_POST['submit'])){
+  
+}
 }
 function Account(){
    $db = new Db();
-
-
-
-
 echo "<TABLE>";
 
 echo "<tr style='background-color: lightgrey;'>
@@ -37,6 +134,7 @@ echo "<tr style='background-color: lightgrey;'>
 <td>lastname</td>
 <td>email</td>
 <td>role</td>
+<td></td>
 <td></td>
 </tr>";
 $select = "SELECT * FROM users";
@@ -57,6 +155,7 @@ for ($i=1; $i < 999; $i++) {
    <td>".$res['lastname']."</td>
    <td>".$res['email']."</td>
    <td>".$res['role']."</td>
+   <td><a href='?accountUpdate=".$i."'>update<a></td>
    <td><a href='?deleteuser=".$i."'>delete<a></td>
    </tr>";
    else
@@ -66,6 +165,7 @@ for ($i=1; $i < 999; $i++) {
    <td>".$res['lastname']."</td>
    <td>".$res['email']."</td>
    <td>".$res['role']."</td>
+   <td><a href='?accountUpdate=".$i."'>update<a></td>
    <td><a href='?deleteuser=".$i."'>delete<a></td>
    </tr>";
 }
@@ -114,6 +214,9 @@ if (isset($_GET['info'])) {
 if (isset($_GET['account'])) {
     Account();
   }
+  if (isset($_GET['accountUpdate'])) {
+    AccountUpdate();
+  }
    ?>
 </div>
 
@@ -124,16 +227,8 @@ if (isset($_GET['account'])) {
 -->
  
 
-
-
-
 </body>
 </html>
-
-
-
-
-
 
 <style>
 
@@ -147,14 +242,14 @@ font-size: 20px;
 }
 .menu{
    
-   position: absolute;
+   position: fixed;
    height: 100%;
    width: 15%;
    background-color: lightgray;
 }
 .top{
    z-index: -1;
-   position: absolute;
+   position: fixed;
    top: 0;
    background-color: lightgray;
    width: 100%;
@@ -170,7 +265,7 @@ a:hover{
 .content{
     position: absolute;
     top: 20%;
-    left: 20%;
+    left: 16%;
 }
 table {
   border-spacing: 0;
@@ -180,8 +275,8 @@ th, td {
   padding: 5px;
 }
 td{
-   padding-right: 75px;
-   padding-left: 75px;
+   padding-right: 20px;
+   padding-left: 20px;
 }
    </style>
 
