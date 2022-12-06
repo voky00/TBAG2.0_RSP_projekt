@@ -29,6 +29,9 @@ Zde se bude upravovat účet uživatele, a to od nastavení profilového obrázk
 Recenze
 Zde budou recenze od uživatelů kteří budou registrováni v systému.
 
+Správa rolí
+Nyní jde upravovat, přidělovat nebo odebírat role jako například autor,redaktor a šéfredaktor.
+
 SQL
 
 Registrace 
@@ -36,3 +39,4 @@ Umožnuje se zaregistrovat na we jako uživatel, jiná práva musí být přidě
 
 Přihlášení
 Možnost se přihlásit ke svému účtu ukládat si články, komentovat.
+
