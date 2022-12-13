@@ -137,6 +137,13 @@ class Db {
         }
     }
 
+    public function logAction($action, $userid) {
+        // make timestamp for mysql
+        $timestamp = date("Y-m-d H:i:s");
+        $query = "INSERT INTO log (action, userid, ts) VALUES ('$action', '$userid', '$timestamp')";
+        $this->runQuery($query);
+    }
+
     public function getUserId($email) {
         if (isset($_SESSION['user'])) {
             $query = "SELECT id FROM users WHERE email = '$email'";

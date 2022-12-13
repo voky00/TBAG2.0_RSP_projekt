@@ -71,6 +71,7 @@ if (isset($_POST['submit'])) {
         $db->runQuery($query);
         echo "<p>Článek byl úspěšně upraven.</p>";
         //redirect to gallery with author id
+        $db->logAction("Article $title edited", $author_id);
         header("Location: gallery.php?author=$author_id");
     }
 

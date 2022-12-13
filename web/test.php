@@ -7,3 +7,7 @@ function test() {
 
 
 test();
+
+require("backend.php");
+
+$db->logAction("test", 1);

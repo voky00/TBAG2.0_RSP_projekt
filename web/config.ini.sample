@@ -6,9 +6,15 @@ database = rsp
 
 
 [navigation_main]
-Časopis = "main-casopis.html"
-Informace = "main-info.html"
+Časopis = "main-casopis.php"
+Informace = "main-info.php"
 Galérie = "gallery.php"
 
 [navigation_author]
-Přidat članek = "NapsatClanek.html"
+Přidat članek = "article.php"
+
+[navigation_reviewer]
+Recenze = "main-review.php"
+
+[navigation_editor]
+Članky = "main-clanky.php"

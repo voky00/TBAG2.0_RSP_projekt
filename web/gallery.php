@@ -165,11 +165,11 @@ if (isset($_GET['author']) && count($articles) < 1) {
 
 function makeActions($id, $authorid = null) {
     echo "<div class='actions'>";
-    echo "<a href='article.php?id=" . $id . "'>Číst</a>";
+    echo "<a href='view.php?id=" . $id . "' target='_blank'>Číst</a>";
     echo " | ";
-    echo "<a href='article.php?id=" . $id  . "&action=pdf'>Stáhnout PDF</a>";
+    echo "<a href='view.php?id=" . $id  . "&action=pdf'>Stáhnout PDF</a>";
     echo " | ";
-    echo "<a href='article.php?id=" . $id . "&action=vote'>Hlasovat pro článek</a>";
+    echo "<a href='view.php?id=" . $id . "&action=vote'>Hlasovat pro článek</a>";
     // todo: add editing of own articles for authors
     // todo: add editing of articles for editors, adiministrators
     echo "</div>";

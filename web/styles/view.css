@@ -1,0 +1,32 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: white;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+p.abstract {
+    font-style: italic;
+    text-align: justify;
+}
+
+p.text {
+    font-size: 1em;
+    text-align: justify;
+}
+
+.author {
+    font-style: italic;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}

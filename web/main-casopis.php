@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-	<meta charset="utf-8" />
-	<title>TBAG Science</title>
-	<link rel="shortcut icon" href="icon.png"/>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
+<?php
+// start session if not
+if (!isset($_SESSION)) {
+    session_start();
+}
+// get role
+if (isset($_SESSION['role'])) {
+    $role = $_SESSION['role'];
+} else {
+    $role = "guest";
+}
+require("backend.php");
+// header
+require("templates/header.php");
+require("navigation.php");
 
-<body>
 
-<nav>
-	<ul>
-  <img src="logo.png" class="logo">
-   <li class="selected"><a href="main-casopis.html">Časopis</a></li>
-  <li><a href="main-anketa.html">Anketa</a></li>
-  <li><a href="main-info.html">Informace</a></li> 
-  <li><a href="main-galerie.html">Galerie</a></li>
-	<a href="user.html"><img src="testprofile.png" class="profil"></div></a>
-	</ul>
-</nav>
+?>
 
-<div class="body">
+
 
 
 <table>
@@ -50,16 +47,5 @@
 
 
 </div>
-
-<footer>
-<div class="text">
-	<b> © 2022 </b>
-</div>
-</footer>
-
-
-
-
-</body>
-
-</html>
+<?php
+include("templates/footer.php");

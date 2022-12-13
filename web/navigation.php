@@ -13,9 +13,9 @@ $config = parse_ini_file('config.ini', true);
 <nav>
     <ul>
         <img src="logo.png" class="logo">
-        <li><a href="main-casopis.html">Časopis</a></li>
+        <li><a href="main-casopis.php">Časopis</a></li>
         <li><a href="main-anketa.html">Anketa</a></li>
-        <li><a href="main-info.html">Informace</a></li>
+        <li><a href="main-info.php">Informace</a></li>
         <li class="selected"><a href="gallery.php">Galerie</a></li>
         <a href="user.html"><img src="testprofile.png" class="profil"></div></a>
     </ul>
@@ -75,7 +75,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             }
         }
         ?>
-        <a href="user.html"><img src="testprofile.png" class="profil"></div></a>
+        <a href="login"><img src="testprofile.png" class="profil"></div></a>
     </ul>
 </nav>
 

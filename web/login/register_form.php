@@ -36,6 +36,11 @@ if(isset($_POST['submit'])){
       
 
     $db->runQuery($query);
+
+    $userid = $db->getConn()->insert_id;
+
+    $db->logAction("New user has registered", $userid);
+
     header('location:index.php');
     echo $query;
       }
