@@ -41,10 +41,10 @@ function redirect($role){
     //switch case
     switch($role){
         case 'reader':
-            header('location:../gallery.php');
+            header('location:../main-casopis.html');
             break;
         case 'admin':
-            header('location:../sprava/sprava.html');
+            header('location:../sprava/sprava.php');
             break;
         case 'editor':
             header('location:../main-clanky.php');
@@ -87,7 +87,6 @@ function redirect($role){
       if(isset($error)){
          foreach($error as $error){
             echo '<span class="error-msg">'.$error.'</span>';
-
          };
       };
       ?>
