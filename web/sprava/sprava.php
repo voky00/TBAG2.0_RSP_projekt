@@ -3,7 +3,6 @@
 require("../backend.php");
 
    if (isset($_GET['deleteuser'])) {
-     $db = new Db();
      $user = $_GET['deleteuser'];
       $dotaz = " DELETE FROM users WHERE id = '$user' ";
       $db->runQuery($dotaz);
@@ -18,6 +17,15 @@ require("../backend.php");
       $dotaz = " UPDATE users SET firstname='$firstname', lastname='$lastname', email='$email',role='$role' WHERE id = '$user' ";
       $db->runQuery($dotaz);
        header('location:sprava.php?account=true');
+}
+   if(isset($_GET['updatewebcontent'])){
+      $id = $_GET['updatewebcontent'];
+      $title = $_POST['title'];
+      $content =$_POST['content'];
+      $shown =$_POST['shown'];
+      $dotaz = " UPDATE pages SET title='$title', content='$content', shown='$shown' WHERE id = '$id' ";
+      $db->runQuery($dotaz);
+       header('location:sprava.php?info=true');
 }
 function Galeri(){
    $db = new Db();
@@ -73,6 +81,7 @@ echo "<tr style='background-color: lightgrey;'>
 <td>title</td>
 <td>content</td>
 <td>shown</td>
+<td></td>
 </tr>";
  $j=0;
 for($i=1; $i < 999; $i++){
@@ -88,6 +97,7 @@ for($i=1; $i < 999; $i++){
    <td>".$res['title']."</td>
    <td>".$res['content']."</td>
    <td>".$res['shown']."</td>
+   <td><a href='?webContentUpdate=".$i."'>update<a></td>
    </tr>";
    else
    echo "<tr>
@@ -95,14 +105,42 @@ for($i=1; $i < 999; $i++){
    <td>".$res['title']."</td>
    <td>".$res['content']."</td>
    <td>".$res['shown']."</td>
+   <td><a href='?webContentUpdate=".$i."'>update<a></td>
    </tr>";
    }
 }
    echo "</TABLE>";
 }
+function webContentUpdate(){
+   $db = new Db();
+$id = $_GET['webContentUpdate'];
+
+$dotaz = " SELECT * FROM pages WHERE id = '$id' ";
+   $res = $db->runQueryWithReturn($dotaz);
+   $res = $res->fetch_assoc();
+
+echo "<form style='margin-left:20%' action='sprava.php?updatewebcontent=".$id."' method='post' id='webContent'>
+ID: ".$id."<br>
+title:
+<input size='50' type='text' name='title' value='".$res['title']."' ><br>
+content<br>
+<textarea rows='10' cols='150' name='content' form='webContent'>
+".$res['content']."</textarea><br>
+shown:  
+<select name = 'shown'>  
+  <option value='0'>0</option> 
+  <option value='1'>1</option>  
+  <option value='2'>2</option>  
+  <option value='3'>3</option>  
+  <option value='4'>4</option>    
+</select> <br>
+<input type='submit' value='Upravit'>
+</form>";
+
+
+}
 function AccountUpdate(){
 $user = $_GET['accountUpdate'];
-
 
 echo "<form action='sprava.php?updateuser=".$user."' method='post'>
 ID: ".$user."<br>
@@ -120,9 +158,7 @@ Role:
 <input type='submit' value='Upravit'>
 </form>";
 
-if (isset($_POST['submit'])){
-  
-}
+
 }
 function Account(){
    $db = new Db();
@@ -216,6 +252,9 @@ if (isset($_GET['account'])) {
   }
   if (isset($_GET['accountUpdate'])) {
     AccountUpdate();
+  }
+  if (isset($_GET['webContentUpdate'])) {
+    webContentUpdate();
   }
    ?>
 </div>
