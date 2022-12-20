@@ -8,12 +8,14 @@ if(isset($_POST['submit'])){
    $name = $_POST['firstname'];
    $lname = $_POST['lastname'];
    $email =  $_POST['email'];
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $type = "user";
+   $pass = $_POST['password'];
+   $hash = password_hash($pass, PASSWORD_DEFAULT);
+   //$cpass = md5($_POST['cpassword']);
+   $cpass = password_verify($_POST['cpassword'], $hash);
+    $type = "reader";
    
 
-   $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
+   $select = " SELECT * FROM users WHERE email = '$email'";
    $result = $db->runQueryWithReturn($select);
    if($db->countRows($result) > 0){
 
@@ -28,13 +30,14 @@ if(isset($_POST['submit'])){
          $query = "INSERT INTO users (firstname, lastname, email, role, password) VALUES ('" . $name . "','" . $lname . "', '" .
       $email . "', '" .
       $type . "', '" .
-      $pass . "')";
+      $hash . "')";
      
       
       
 
     $db->runQuery($query);
-         header('location:login_form.php');
+    header('location:index.php');
+    echo $query;
       }
    }
 
@@ -74,7 +77,7 @@ if(isset($_POST['submit'])){
       <input type="password" name="password" required placeholder="Zadejte heslo">
       <input type="password" name="cpassword" required placeholder="Zadejte heslo znovu">
       <input type="submit" name="submit" value="Zaregistrovat se!" class="form-btn" style="background-color:#11F4DF">
-      <p style="background-color:#11A2F4">Již máte účet? <a href="login_form.php" style="background-color:#11A2F4">Přihlásit se</a></p>
+      <p style="background-color:#11A2F4">Již máte účet? <a href="index.php" style="background-color:#11A2F4">Přihlásit se</a></p>
    </form>
 
 </div>

@@ -1,0 +1,8 @@
+[db]
+hostname = localhost
+username = root
+password = ExplodedPlastix1
+database = TBAG
+
+[access]
+author_menu = editownarticle,addarticle
