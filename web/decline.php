@@ -16,5 +16,9 @@ require("backend.php");
 $query = "UPDATE articles SET status = 'declined' WHERE id = " . $_GET['id'];
 
 $db->runQuery($query);
+// log action
+
+$db->logAction("Article " . $_GET['id'] . " declined", $db->getUserId($_SESSION['user']));
+
 
 header("Location: main-clanky.php");

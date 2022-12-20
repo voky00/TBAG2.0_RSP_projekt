@@ -14,6 +14,9 @@ $db->runQuery($query);
 $query = "DELETE FROM articles WHERE id = $id";
 $db->runQuery($query);
 
+// log action
+
+$db->logAction("Article $id deleted", $db->getUserId($_SESSION['user']));
 
 // Path: main-clanky.php
 header("Location: main-clanky.php");

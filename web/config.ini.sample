@@ -18,3 +18,7 @@ Recenze = "main-review.php"
 
 [navigation_editor]
 Članky = "main-clanky.php"
+
+[navigation_chief]
+Udalosti = "actions.php"
+Članky = "main-clanky.php"

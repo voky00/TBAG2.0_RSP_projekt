@@ -14,6 +14,9 @@ $title = $article[0]['header'];
 $abstract = $article[0]['abstract'];
 $content = $article[0]['content'];
 
+// translate new lines to <br>
+$content = nl2br($content);
+
 // get authors
 $authors = $db->getAuthors($id);
 
@@ -68,7 +71,7 @@ if ($action == 'vote') {
     <h1><?php echo $title; ?></h1>
     <?php
     foreach ($authors as $author) {
-        echo "<span class='author'>" . $author['firstname'] . " " . $author['lastname'] . "</span>";
+        echo "<span class='author'>" . $author['firstname'] . " " . $author['lastname'] . "</span><br>";
     }
     ?>
 

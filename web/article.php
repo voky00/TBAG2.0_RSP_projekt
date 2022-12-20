@@ -60,6 +60,8 @@ if (isset($_POST['submit'])) {
         // insert author id and article id to db
         $query = "INSERT INTO authors (userid, articleid, place) VALUES ('$author_id', '$article_id', '1')";
         $db->runQuery($query);
+        // log action
+        $db->logAction("Article $article_id added", $db->getUserId($_SESSION['user']));
         echo "<p>Článek byl úspěšně přidán do databáze.</p>";
         //redirect to gallery with author id
         header("Location: gallery.php?author=$author_id");

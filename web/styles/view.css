@@ -20,9 +20,11 @@ p.text {
 }
 
 .author {
+    font-weight: bolder;
     font-style: italic;
     font-size: 0.9em;
     text-align: right;
+
 }
 
 

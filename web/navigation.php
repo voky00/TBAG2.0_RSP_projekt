@@ -73,9 +73,23 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     echo "<li><a href='$value'>$key</a></li>";
                 }
             }
+        } elseif ($role == 'chiefeditor') {
+            foreach ($config['navigation_chief'] as $key => $value) {
+                if ($currentPage == $value) {
+                    echo "<li class='selected'><a href='$value'>$key</a></li>";
+                } else {
+                    echo "<li><a href='$value'>$key</a></li>";
+                }
+            }
         }
         ?>
-        <a href="login"><img src="testprofile.png" class="profil"></div></a>
+        <?php
+            if ($role != 'guest') {
+                echo "<a href='logout.php'><img src='testprofile.png' class='profil'></div></a>";
+            } else
+                echo "<a href='login'><img src='testprofile.png' class='profil'></div></a>";
+        ?>
+<!--        <a href="login"><img src="testprofile.png" class="profil"></div></a>-->
     </ul>
 </nav>
 
